@@ -27,7 +27,7 @@
 }
 
 
-.add-user-container {
+.add-btn-container {
 	position: fixed;
 	bottom: 100px;
 	right: 20px;
@@ -114,7 +114,7 @@
 	position: absolute;
 	top: 0;
 	transition: all 0.4s;
-	width: 100%;
+	width: max-content;
 }
 
 .model-field__control {
@@ -209,6 +209,7 @@
 
 /* Flash messages */
 
+
 .flash-success {
 	padding: 20px;
 	background-color: #33a43a;
@@ -216,4 +217,14 @@
 	margin: 20px 0px;
 	border-radius: 4px;
 	margin-left: 4.6rem !important;
+}
+
+
+.flash-error {
+	padding: 20px;
+	background-color: rgb(235, 47, 47);
+	color: white;
+	margin: 20px 0px;
+	margin-left: 4.6rem !important;
+	border-radius: 4px;
 }

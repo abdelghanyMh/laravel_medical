@@ -89,25 +89,56 @@
     })();
 </script>
 <script>
-    $(function() {
+    // $(function() {
 
 
-        var table = $('#example1').DataTable();
+    //     var table = $('#example1').DataTable();
 
-        $(".btnSelect").on('click', function() {
-            $currentRow = $(this).closest("tr");
-            var [name, lastname, username, email, specialty, ...ignore] = table.row($currentRow).data()
-            console.table(name, lastname, username, email, specialty);
-            $("#nomUpdate").val(name);
-            $("#nomDelete").val(name);
-            $("#lastnameUpdate").val(lastname);
-            $("#lastnameDelete").val(lastname);
-            $("#usernameUpdate").val(username);
-            $("#usernameDelete").val(username);
-            $("#email").val(email);
-            $("#specialty").val(specialty);
-        })
+    //     // $(".btnSelect").on('click', function() {
+    //     //     $currentRow = $(this).closest("tr");
+    //     //     var [name, lastname, username, email, specialty, ...ignore] = table.row($currentRow).data()
+    //     //     console.table(name, lastname, username, email, specialty);
+    //     //     $("#nomUpdate").val(name);
+    //     //     $("#nomDelete").val(name);
+    //     //     $("#lastnameUpdate").val(lastname);
+    //     //     $("#lastnameDelete").val(lastname);
+    //     //     $("#usernameUpdate").val(username);
+    //     //     $("#usernameDelete").val(username);
+    //     //     $("#email").val(email);
+    //     //     $("#specialty").val(specialty);
+    //     // })
 
+    // });
 
+    $("#users_table").ready(function() {
+        $("#users_table").DataTable()
     });
+    $("#patients_table").ready(function() {
+        $("#patients_table").DataTable()
+    });
+
+
+    // FIXME check whether these imports are required
+
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+    })
+
+    //Date time picker
+    $('#dob').datetimepicker({
+        format: 'L'
+    });
+
+    // inputmsk Code start (__-__)
+
+    $('[data-mask]').inputmask()
+
+
+    $("input[data-bootstrap-switch]").each(function() {
+        $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    })
 </script>

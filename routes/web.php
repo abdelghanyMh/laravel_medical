@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\UsersController;
+use App\Models\Patient;
 use DebugBar\DebugBar;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +24,5 @@ Route::get('/', function () {
 // Route::view('/users', 'users');
 // TODO add Is admin restriction 
 Route::resource('users',  UsersController::class);
+
+Route::resource('patients', PatientsController::class);

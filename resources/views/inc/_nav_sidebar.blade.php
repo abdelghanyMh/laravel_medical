@@ -1,6 +1,7 @@
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-dark navbar-info">
     <!-- TODO add active page hightligh if the current page is users hightlight the uses list link in blue...-->
+    <!-- TODO add insert btn on hover on patient/user list ifthey are being hoverd -->
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -16,7 +17,7 @@
             </a>
         </li>
     </ul>
-   
+
 
 </nav>
 <!-- /.navbar -->
@@ -45,10 +46,10 @@
                         </p>
                     </a>
                 <li class="nav-item">
-                    <a methode="post" href="/patientsList" class="nav-link">
+                    <a href="{{ route('patients.index') }}" class="nav-link">
                         <i class=" nav-icon fas fa-plus-circle"></i>
                         <p>
-                            Listes des patients
+                            patients List
                         </p>
                     </a>
                 </li>
@@ -61,9 +62,9 @@
                 </li>
                 <!-- FIXME:if admin  AUTHORISATION -->
                 <li class="nav-item">
-                    <a href="../widgets.html" class="nav-link">
+                    <a href="{{ route('users.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
-                        <p>users list</p>
+                        <p>Users list</p>
                     </a>
                 </li>
             </ul>
