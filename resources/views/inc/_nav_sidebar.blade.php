@@ -11,20 +11,12 @@
     <!-- logout button -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link logout" href="#" role="button" data-toggle="tooltip" data-placement="bottom"
-                title="Déconnecter">
+            <a class="nav-link logout" href="#" role="button" title="logout">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </li>
     </ul>
-    <!-- logout  Bootstrap Tooltip  -->
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-    <!-- ./ logout  Bootstrap Tooltip  -->
-    <!-- logout button -->
+   
 
 </nav>
 <!-- /.navbar -->
@@ -33,7 +25,7 @@
 <aside class="main-sidebar elevation-4 sidebar-light-primary">
     <!-- Brand Logo-->
     <a href="#" class="brand-link">
-        <img src="img/appointments1.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="{{ asset('img/appointments1.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="max-height: 38px;opacity: .8">
         <span class="brand-text font-weight-light"><b>Clinique</b>Tlemcen</p></span>
     </a>

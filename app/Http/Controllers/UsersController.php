@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserFormRequest;
+use App\Http\Requests\UserUpdateFormRequest;
 use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -31,8 +31,6 @@ class UsersController extends Controller
     {
         //
     }
-    // larevel-medical
-    // Management app for medical clinics
 
     /**
      * Store a newly created resource in storage.
@@ -70,9 +68,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+
+        // TODO check if $this  the update authorization 
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -82,9 +82,15 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateFormRequest $request, User $user)
     {
-        //
+        // TODO check if $this  the update authorization 
+
+        $validated = $request->validated();
+        $user->update($validated);
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'User is updated! username: ' . $user->username);
     }
 
     /**
@@ -93,8 +99,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        // TODO check if $this has the delete authorization 
+
+        $user->delete();
+        return redirect()
+            ->route('users')
+            ->with('success', 'User has been deleted!');
     }
 }

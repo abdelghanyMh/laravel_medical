@@ -1,58 +1,58 @@
 <!-- Admin lte Timepicker depondaces-->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- InputMask -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
 <!-- date-range-picker -->
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Select2 -->
-<script src="plugins/select2/js/select2.full.min.js"></script>
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="js/adminlte.min.js"></script>
+<script src="{{ asset('js/adminlte.min.js') }}"></script>
 <!-- DataTables  & Plugins -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="plugins/jszip/jszip.min.js"></script>
-<script src="plugins/pdfmake/pdfmake.min.js"></script>
-<script src="plugins/pdfmake/vfs_fonts.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
 <script>
     $(document).ready(function() {
         // code to read selected table row cell data (values).
-        $(".btnSelect").on('click', function() {
-            var currentRow = $(this).closest("tr");
-            var nom = currentRow.find("td:eq(0)").html();
-            var prenom = currentRow.find("td:eq(1)").html();
-            var username = currentRow.find("td:eq(2)").html();
-            var pwd = currentRow.find("td:eq(3)").html();
-            var mail = currentRow.find("td:eq(4)").html();
-            var specialty = currentRow.find("td:eq(5)").html();
-            var id = currentRow.find("td:eq(6)").html();
-            //  populate input field  of the model form  with the data of the selcted row 
-            $("#id").val(id);
-            $("#nomUpdate").val(nom);
-            $("#nomDelete").val(nom);
-            $("#prenomUpdate").val(prenom);
-            $("#prenomDelete").val(prenom);
-            $("#usernameUpdate").val(username);
-            $("#usernameDelete").val(username);
-            $("#pwd").val(pwd);
-            $("#mail").val(mail);
-            $("#specialty").val(specialty);
-        });
+        // $(".btnSelect").on('click', function() {
+        //     var currentRow = $(this).closest("tr");
+        //     var nom = currentRow.find("td:eq(0)").html();
+        //     var lastname = currentRow.find("td:eq(1)").html();
+        //     var username = currentRow.find("td:eq(2)").html();
+        //     var pwd = currentRow.find("td:eq(3)").html();
+        //     var mail = currentRow.find("td:eq(4)").html();
+        //     var specialty = currentRow.find("td:eq(5)").html();
+        //     var id = currentRow.find("td:eq(6)").html();
+        //     //  populate input field  of the model form  with the data of the selcted row 
+        //     $("#id").val(id);
+        //     $("#nomUpdate").val(nom);
+        //     $("#nomDelete").val(nom);
+        //     $("#lastnameUpdate").val(lastname);
+        //     $("#lastnameDelete").val(lastname);
+        //     $("#usernameUpdate").val(username);
+        //     $("#usernameDelete").val(username);
+        //     $("#pwd").val(pwd);
+        //     $("#mail").val(mail);
+        //     $("#specialty").val(specialty);
+        // });
     });
 </script>
 <script>
@@ -90,20 +90,24 @@
 </script>
 <script>
     $(function() {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
+
+
+        var table = $('#example1').DataTable();
+
+        $(".btnSelect").on('click', function() {
+            $currentRow = $(this).closest("tr");
+            var [name, lastname, username, email, specialty, ...ignore] = table.row($currentRow).data()
+            console.table(name, lastname, username, email, specialty);
+            $("#nomUpdate").val(name);
+            $("#nomDelete").val(name);
+            $("#lastnameUpdate").val(lastname);
+            $("#lastnameDelete").val(lastname);
+            $("#usernameUpdate").val(username);
+            $("#usernameDelete").val(username);
+            $("#email").val(email);
+            $("#specialty").val(specialty);
+        })
+
+
     });
 </script>

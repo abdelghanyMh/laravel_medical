@@ -4,7 +4,6 @@
 
 #Header {
 	margin-left: 84px;
-	padding-left: 80px;
 }
 
 .appointment_btn {
@@ -48,10 +47,17 @@
 	margin: 0 !important;
 
 	transition: all 0.3s;
+}
+
+.add-btn,
+.btn-modify,
+.btn-del {
 	position: relative;
 }
 
-.add-btn i {
+.add-btn i,
+.btn-modify i,
+.btn-del i {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -70,6 +76,10 @@
 	background-color: #343a40;
 	color: #f8f9fa;
 	border-color: #ddd;
+}
+
+.form-modify {
+	display: inline-block;
 }
 
 .btn-modify {
