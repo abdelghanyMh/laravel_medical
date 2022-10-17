@@ -1,32 +1,32 @@
 @extends('layout')
-@section('title', 'User Management')
-@section('header', 'User list')
+@section('title', 'Users Management')
+@section('header', 'Users list')
 
 @section('content')
     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
         <div class="row">
             <div class="col-sm-12">
-                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid"
+                <table id="users_table" class="table table-bordered table-striped dataTable dtr-inline" role="grid"
                     aria-describedby="example1_info">
                     <thead>
                         <tr role="row">
-                            <th class="sorting_asc" tabindex="0" aria-controls="example1" aria-sort="ascending"
+                            <th class="sorting_asc" tabindex="0" aria-controls="users_table" aria-sort="ascending"
                                 aria-label="Rendering engine: activate to sort column descending">
                                 first name
                             </th>
-                            <th class="sorting" tabindex="0" aria-controls="example1"
+                            <th class="sorting" tabindex="0" aria-controls="users_table"
                                 aria-label="Browser: activate to sort column ascending">
                                 last name
                             </th>
-                            <th class="sorting" tabindex="0" aria-controls="example1"
+                            <th class="sorting" tabindex="0" aria-controls="users_table"
                                 aria-label="Platform(s): activate to sort column ascending">
                                 login
                             </th>
-                            <th class="sorting" tabindex="0" aria-controls="example1"
+                            <th class="sorting" tabindex="0" aria-controls="users_table"
                                 aria-label="CSS grade: activate to sort column ascending">
                                 email
                             </th>
-                            <th class="sorting" tabindex="0" aria-controls="example1"
+                            <th class="sorting" tabindex="0" aria-controls="users_table"
                                 aria-label="CSS grade: activate to sort column ascending">
                                 specialty
                             </th>
@@ -77,7 +77,7 @@
         </div>
     </div>
     {{-- add user btn  --}}
-    <div class="add-user-container">
+    <div class="add-btn-container">
         <button type="button" class="  btn-default add-btn " data-toggle="modal" data-target="#addUser">
             <i class="fas fa-user-plus" style="font-size: 29px;margin-bottom: 8px;margin-left: 1px;"></i>
         </button>

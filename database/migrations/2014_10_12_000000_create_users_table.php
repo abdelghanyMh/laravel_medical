@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // TODO add enum type to specialty
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');

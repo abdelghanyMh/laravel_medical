@@ -3,7 +3,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Ajouter un nouvel utilisateur</h4>
+                    <h4 class="modal-title">Add a new user</h4>
                 </div>
                 <div class="modal-body">
                     <!-- Main content -->
@@ -17,7 +17,7 @@
                                         <div class="model-field__control">
                                             <input id="name" name="name" type="text"
                                                 class="@error('name') error-border @enderror model-field__input form-control "
-                                                value="{{ old('name') }}" required />
+                                                value="{{ old('name') }}" placeholder=" "  required />
                                             <label for="name" class="model-field__label">name</label>
                                             <div class="model-field__bar"></div>
                                             <!-- TODO check if i m working-->
@@ -36,7 +36,7 @@
                                         <div class="model-field__control">
                                             <input id="lastname" name="lastname" type="text"
                                                 class="@error('lastname') error-border @enderror model-field__input form-control "
-                                                value="{{ old('lastname') }}" required />
+                                                value="{{ old('lastname') }}" placeholder=" " required />
                                             <label for="lastname" class="model-field__label">last Name</label>
                                             @error('lastname')
                                                 <div class="error">{{ $message }}</div>
@@ -52,7 +52,7 @@
                                         <div class="model-field__control">
                                             <input type="text" id="username" name="username"
                                                 class=" @error('username') error-border @enderror model-field__input form-control"
-                                                value="{{ old('username') }}" required />
+                                                value="{{ old('username') }}"placeholder=" "  required />
                                             <label for="username" class="model-field__label">username</label>
                                             @error('username')
                                                 <div class="error">{{ $message }}</div>
@@ -68,7 +68,7 @@
                                         <div class="model-field__control">
                                             <input type="password" id="pwd" name="pwd"
                                                 class="  @error('pwd') error-border @enderror model-field__input form-control"
-                                                value="{{ old('pwd') }}" required />
+                                                value="{{ old('pwd') }}" placeholder=" " required />
                                             <label for="pwd" class="model-field__label">password</label>
                                             @error('pwd')
                                                 <div class="error">{{ $message }}</div>
@@ -84,7 +84,7 @@
                                         <div class="model-field__control">
                                             <input id="mail" name="email" type="email"
                                                 class=" @error('email') error-border @enderror model-field__input form-control"
-                                                value="{{ old('email') }}" required />
+                                                value="{{ old('email') }}" placeholder=" " required />
                                             <label for="email" class="model-field__label">email</label>
                                             @error('email')
                                                 <div class="error">{{ $message }}</div>

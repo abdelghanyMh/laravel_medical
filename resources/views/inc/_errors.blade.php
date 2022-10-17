@@ -1,11 +1,9 @@
 <!-- display error  -->
 @if ($errors->any())
-    <div class="alert alert-danger alert-block" id="error">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    <div class="flash-error">
+        <b>there are some errors in your submission:</b>
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
     </div>
 @endif
