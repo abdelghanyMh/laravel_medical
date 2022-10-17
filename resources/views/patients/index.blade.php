@@ -46,8 +46,11 @@
                                 <td>{{ $patient['email'] }}</td>
                                 <td style="padding-right: -3.25rem;border-right-width: 0px;height: 37px;width: 95.833px;">
                                     <button class="btn btn-profile"><i class="fas fa-external-link-alt"></i></button>
-                                    <button class="btn btn-modify" data-toggle="modal"
-                                        data-target="#modal-modify-patient"><i class="fas fa-pen"></i></button>
+
+                                    <a href="{{ route('patients.edit', [$patient]) }}" class="btn btn-app btn-modify"
+                                        style="height: 41px;min-width: 46px;margin: 0px;padding: 0px;">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
                                 </td>
                             </tr>
                             @php

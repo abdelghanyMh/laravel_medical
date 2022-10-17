@@ -65,9 +65,9 @@ class PatientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Patient $patient)
     {
-        //
+        return view('patients.edit', ['patient' => $patient]);
     }
 
     /**
@@ -77,9 +77,14 @@ class PatientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Patient $patient, PatientFormRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $patient->update($validated);
+
+        return redirect()
+            ->route('patients.index')
+            ->with('success', 'patients: ' . $patient->name . ' is updated! ');
     }
 
     /**
