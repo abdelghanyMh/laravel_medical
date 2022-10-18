@@ -30,6 +30,11 @@ class PatientFormRequest extends FormRequest
             'dob' =>  'required',
             'email' =>  'required',
             'phone' =>  'required',
+            'diseases' => 'nullable|string',
+            'allergies' => 'nullable|string',
+            'antecedents' => 'nullable|string',
+            'comments' => 'nullable|string',
+
         ];
     }
 }

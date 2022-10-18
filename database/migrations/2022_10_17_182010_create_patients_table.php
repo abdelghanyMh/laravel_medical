@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('diseases')->nullable();
             $table->string('allergies')->nullable();
-            $table->string('background')->nullable();
+            $table->string('antecedents')->nullable();
             $table->string('comments')->nullable();
         });
     }

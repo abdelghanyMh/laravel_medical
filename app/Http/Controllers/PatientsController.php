@@ -54,9 +54,9 @@ class PatientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Patient $patient)
     {
-        //
+        return view('patients.show', ['patient' => $patient]);
     }
 
     /**
@@ -82,8 +82,7 @@ class PatientsController extends Controller
         $validated = $request->validated();
         $patient->update($validated);
 
-        return redirect()
-            ->route('patients.index')
+        return back()
             ->with('success', 'patients: ' . $patient->name . ' is updated! ');
     }
 
