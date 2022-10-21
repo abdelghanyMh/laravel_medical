@@ -24,12 +24,15 @@ Route::get('/', function () {
 });
 
 // Route::view('/users', 'users');
+
 // TODO add Is admin restriction 
 Route::resource('users',  UsersController::class);
 
+
+Route::get('/scans/{id}/download', [ScansController::class, 'download'])->name('scans.download');
+
 Route::resource('scans', ScansController::class);
 
-// Route::get('/print', [OrientationLtrController::class, 'print']);
 Route::resource('orientationLtr', OrientationLtrController::class);
 
 Route::resource('patients', PatientsController::class);
