@@ -61,13 +61,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    @yield('content')
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
+                            @yield('content')
                         </div>
                         <!-- /.col -->
                     </div>

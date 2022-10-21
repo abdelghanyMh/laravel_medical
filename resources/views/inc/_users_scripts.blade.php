@@ -30,32 +30,34 @@
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
 <script>
-    $(document).ready(function() {
-        // code to read selected table row cell data (values).
-        // $(".btnSelect").on('click', function() {
-        //     var currentRow = $(this).closest("tr");
-        //     var nom = currentRow.find("td:eq(0)").html();
-        //     var lastname = currentRow.find("td:eq(1)").html();
-        //     var username = currentRow.find("td:eq(2)").html();
-        //     var pwd = currentRow.find("td:eq(3)").html();
-        //     var mail = currentRow.find("td:eq(4)").html();
-        //     var specialty = currentRow.find("td:eq(5)").html();
-        //     var id = currentRow.find("td:eq(6)").html();
-        //     //  populate input field  of the model form  with the data of the selcted row 
-        //     $("#id").val(id);
-        //     $("#nomUpdate").val(nom);
-        //     $("#nomDelete").val(nom);
-        //     $("#lastnameUpdate").val(lastname);
-        //     $("#lastnameDelete").val(lastname);
-        //     $("#usernameUpdate").val(username);
-        //     $("#usernameDelete").val(username);
-        //     $("#pwd").val(pwd);
-        //     $("#mail").val(mail);
-        //     $("#specialty").val(specialty);
-        // });
+    $("#users_table").ready(function() {
+        $("#users_table").DataTable()
     });
+    $("#patients_table").ready(function() {
+        $("#patients_table").DataTable()
+    });
+    $("#orientationLtrs_table").ready(function() {
+        $("#orientationLtrs_table").DataTable()
+    });
+    $("#scans_info").ready(function() {
+        $("#scans_info").DataTable()
+    });
+    $("#prescriptions_table").ready(function() {
+        $("#prescriptions_table").DataTable()
+    });
+
+    //Date time picker
+    $('#dob').datetimepicker({
+        format: 'L'
+    });
+
+    // inputmsk Code start (__-__)
+
+    $('[data-mask]').inputmask()
 </script>
 <script>
+    // FIXME check whether these imports are required
+
     $(function() {
         //Initialize Select2 Elements
         $('.select2').select2()
@@ -87,58 +89,4 @@
             });
         }, false);
     })();
-</script>
-<script>
-    // $(function() {
-
-
-    //     var table = $('#example1').DataTable();
-
-    //     // $(".btnSelect").on('click', function() {
-    //     //     $currentRow = $(this).closest("tr");
-    //     //     var [name, lastname, username, email, specialty, ...ignore] = table.row($currentRow).data()
-    //     //     console.table(name, lastname, username, email, specialty);
-    //     //     $("#nomUpdate").val(name);
-    //     //     $("#nomDelete").val(name);
-    //     //     $("#lastnameUpdate").val(lastname);
-    //     //     $("#lastnameDelete").val(lastname);
-    //     //     $("#usernameUpdate").val(username);
-    //     //     $("#usernameDelete").val(username);
-    //     //     $("#email").val(email);
-    //     //     $("#specialty").val(specialty);
-    //     // })
-
-    // });
-
-    $("#users_table").ready(function() {
-        $("#users_table").DataTable()
-    });
-    $("#patients_table").ready(function() {
-        $("#patients_table").DataTable()
-    });
-
-
-    // FIXME check whether these imports are required
-
-    //Initialize Select2 Elements
-    $('.select2').select2()
-
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-        theme: 'bootstrap4'
-    })
-
-    //Date time picker
-    $('#dob').datetimepicker({
-        format: 'L'
-    });
-
-    // inputmsk Code start (__-__)
-
-    $('[data-mask]').inputmask()
-
-
-    $("input[data-bootstrap-switch]").each(function() {
-        $(this).bootstrapSwitch('state', $(this).prop('checked'));
-    })
 </script>
