@@ -19,7 +19,7 @@
 <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>\
 <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
@@ -45,14 +45,31 @@
     $("#prescriptions_table").ready(function() {
         $("#prescriptions_table").DataTable()
     });
+    $("#appointment_table").ready(function() {
+        $("#appointment_table").DataTable()
+    });
 
     //Date time picker
     $('#dob').datetimepicker({
         format: 'L'
     });
 
-    // inputmsk Code start (__-__)
+    //Date time picker
+    $('#appointmentdate').datetimepicker({
+        format: 'L'
+    });
 
+    //start_time picker
+    $('#start_time').datetimepicker({
+        format: 'LT'
+    })
+
+    //end_time picker
+    $('#end_time').datetimepicker({
+        format: 'LT'
+    })
+    
+    // inputmsk Code start (__-__)
     $('[data-mask]').inputmask()
 </script>
 <script>

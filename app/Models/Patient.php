@@ -39,4 +39,9 @@ class Patient extends Model
     {
         return $this->hasMany(OrientationLetter::class);
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }

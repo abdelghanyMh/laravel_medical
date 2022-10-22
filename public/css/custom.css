@@ -228,3 +228,9 @@
 	margin-left: 4.6rem !important;
 	border-radius: 4px;
 }
+
+.main-sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+}

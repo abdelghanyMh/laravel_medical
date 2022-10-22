@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\OrientationLtrController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\ScansController;
 use App\Http\Controllers\UsersController;
-use App\Models\Patient;
-use DebugBar\DebugBar;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,3 +35,5 @@ Route::resource('scans', ScansController::class);
 Route::resource('orientationLtr', OrientationLtrController::class);
 
 Route::resource('patients', PatientsController::class);
+
+Route::resource('appointment', AppointmentController::class);
