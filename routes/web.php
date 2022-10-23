@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\OrientationLtrController;
 use App\Http\Controllers\PatientsController;
+use App\Http\Controllers\PrescriptionsController;
 use App\Http\Controllers\ScansController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -37,3 +38,6 @@ Route::resource('orientationLtr', OrientationLtrController::class);
 Route::resource('patients', PatientsController::class);
 
 Route::resource('appointment', AppointmentController::class);
+
+Route::get('/prescriptions/{id}/print', [PrescriptionsController::class, 'print'])->name('prescriptions.print');
+Route::resource('prescriptions', PrescriptionsController::class);

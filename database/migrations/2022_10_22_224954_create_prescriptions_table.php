@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            $table->foreignId('user_id')
-                ->constrained()
-                ->onDelete('cascade');
+        Schema::create('prescriptions', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->text('content');
         });
     }
 
@@ -27,9 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            // $table->dropForeign('user_id');
-            // $table->dropColumn('user_id');
-        });
+        Schema::dropIfExists('prescriptions');
     }
 };

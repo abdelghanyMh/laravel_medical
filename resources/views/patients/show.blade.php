@@ -126,31 +126,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr role="row" class="even">
+                                @php
+                                    $counter = 1;
+                                @endphp
 
-                                    <td>02/30/2021</td>
-                                    <td>medicament:dose moment_pris duree... </td>
-                                    <td>
-                                        <a href="prescription-print.html" target="_blank" class="btn btn-default"><i
-                                                class="fa fa-print"></i>
-                                            Print</a>
-                                    </td>
-                                </tr>
-                                <tr role="row" class="odd">
+                                @foreach ($patient->prescriptions as $prescription)
+                                    <tr role="row" class="{{ $counter % 2 == 0 ? 'even' : 'odd' }}">
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            {{ $prescription['updated_at'] }}</td>
+                                        <td>{{ $prescription['content'] }}</td>
 
-                                    <td>01/20/2021</td>
-                                    <td>medicament:dose moment_pris duree... </td>
-                                    <td>
-                                        <a href="prescription-print.html" target="_blank" class="btn btn-default"><i
-                                                class="fa fa-print"></i>
-                                            Print</a>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <a href="{{ route('prescriptions.print', [$prescription->id]) }}"
+                                                target="_blank" class="btn btn-default"><i class="fa fa-print"></i>
+                                                Print</a>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $counter++;
+                                    @endphp
+                                @endforeach
                             </tbody>
 
                         </table>
                         <button type="button" class="  btn-success add-btn" data-toggle="modal"
-                            data-target="#modal-prescription">
+                            data-target="#modal_add_prescription">
                             +
                         </button>
                     </div>
@@ -520,5 +520,6 @@
     @include('modals._add_scan', ['patient' => $patient])
     @include('modals._add_orientationLtr', ['patient' => $patient])
     @include('modals._add_appointment')
+    @include('modals._add_prescription', ['patient' => $patient])
 
 @endsection
