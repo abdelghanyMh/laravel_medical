@@ -49,14 +49,14 @@
                     <a href="{{ route('patients.index') }}" class="nav-link">
                         <i class=" nav-icon fas fa-plus-circle"></i>
                         <p>
-                            patients List
+                            Patients List
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../widgets.html" class="nav-link">
+                    <a href="{{ route('appointment.index') }}" class="nav-link">
                         <i class=" nav-icon fas fa-stethoscope"></i>
-                        <p>Rendez-vous
+                        <p>Appointment list
                         </p>
                     </a>
                 </li>

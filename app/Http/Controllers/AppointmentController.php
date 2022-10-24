@@ -5,18 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AppointmentFormRequest;
 use App\Models\Patient;
 use App\Models\User;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Appointments for the current Doctor.
      *
      * @return \Illuminate\Http\Response
      */
+    // $id
     public function index()
     {
-        //
+        $doctor = User::find(1);
+        $appointments = $doctor->appointments;
+        return view('appointments.index', ['appointments' => $appointments]);
     }
 
     /**
@@ -50,7 +54,7 @@ class AppointmentController extends Controller
         );
 
         return back()
-        ->with('success', 'a new appointment is created');
+            ->with('success', 'a new appointment is created');
     }
 
     /**
