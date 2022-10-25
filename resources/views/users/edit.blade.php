@@ -63,11 +63,11 @@
             <div class="col-sm">
                 <div class="model-field">
                     <div class="model-field__control">
-                        <input type="password" name="pwd"
-                            class="  @error('pwd') error-border @enderror model-field__input form-control"
-                            value="{{ old('pwd') }}" required />
-                        <label for="pwd" class="model-field__label">password</label>
-                        @error('pwd')
+                        <input type="password" name="password"
+                            class="  @error('password') error-border @enderror model-field__input form-control"
+                            value="{{ old('password') }}" required />
+                        <label for="password" class="model-field__label">password</label>
+                        @error('password')
                             <div class="error">{{ $message }}</div>
                         @enderror
                         <div class="model-field__bar"></div>

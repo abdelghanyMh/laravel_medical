@@ -43,7 +43,7 @@ class UsersController extends Controller
         $validated = $request->validated();
 
         // hash password
-        $validated['pwd'] = Hash::make($validated['pwd']);
+        $validated['password'] = Hash::make($validated['password']);
 
         // store the VALIDATED user info to the database
         $user = User::create($validated);
@@ -105,7 +105,7 @@ class UsersController extends Controller
 
         $user->delete();
         return redirect()
-            ->route('users')
+            ->route('users.index')
             ->with('success', 'User has been deleted!');
     }
 }

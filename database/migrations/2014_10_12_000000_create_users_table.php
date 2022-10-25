@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('specialty');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('pwd');
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

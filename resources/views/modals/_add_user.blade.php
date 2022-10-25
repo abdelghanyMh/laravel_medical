@@ -17,7 +17,7 @@
                                         <div class="model-field__control">
                                             <input id="name" name="name" type="text"
                                                 class="@error('name') error-border @enderror model-field__input form-control "
-                                                value="{{ old('name') }}" placeholder=" "  required />
+                                                value="{{ old('name') }}" placeholder=" " required />
                                             <label for="name" class="model-field__label">name</label>
                                             <div class="model-field__bar"></div>
                                             <!-- TODO check if i m working-->
@@ -52,25 +52,9 @@
                                         <div class="model-field__control">
                                             <input type="text" id="username" name="username"
                                                 class=" @error('username') error-border @enderror model-field__input form-control"
-                                                value="{{ old('username') }}"placeholder=" "  required />
+                                                value="{{ old('username') }}"placeholder=" " required />
                                             <label for="username" class="model-field__label">username</label>
                                             @error('username')
-                                                <div class="error">{{ $message }}</div>
-                                            @enderror
-                                            <div class="model-field__bar"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="model-field">
-                                        <div class="model-field__control">
-                                            <input type="password" id="pwd" name="pwd"
-                                                class="  @error('pwd') error-border @enderror model-field__input form-control"
-                                                value="{{ old('pwd') }}" placeholder=" " required />
-                                            <label for="pwd" class="model-field__label">password</label>
-                                            @error('pwd')
                                                 <div class="error">{{ $message }}</div>
                                             @enderror
                                             <div class="model-field__bar"></div>
@@ -87,6 +71,22 @@
                                                 value="{{ old('email') }}" placeholder=" " required />
                                             <label for="email" class="model-field__label">email</label>
                                             @error('email')
+                                                <div class="error">{{ $message }}</div>
+                                            @enderror
+                                            <div class="model-field__bar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="model-field">
+                                        <div class="model-field__control">
+                                            <input type="password" id="password" name="password"
+                                                class="  @error('password') error-border @enderror model-field__input form-control"
+                                                value="{{ old('password') }}" placeholder=" " required />
+                                            <label for="password" class="model-field__label">password</label>
+                                            @error('password')
                                                 <div class="error">{{ $message }}</div>
                                             @enderror
                                             <div class="model-field__bar"></div>
