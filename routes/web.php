@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrientationLtrController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\PrescriptionsController;
@@ -41,3 +42,7 @@ Route::resource('appointment', AppointmentController::class);
 
 Route::get('/prescriptions/{id}/print', [PrescriptionsController::class, 'print'])->name('prescriptions.print');
 Route::resource('prescriptions', PrescriptionsController::class);
+
+Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('login');
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

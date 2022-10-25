@@ -12,7 +12,7 @@
     <!-- logout button -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link logout" href="#" role="button" title="logout">
+            <a class="nav-link logout" href="{{ route('logout') }}" role="button" title="logout">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </li>
@@ -42,7 +42,7 @@
                     <a href="#" class="nav-link">
                         <i class=" nav-icon fas fa-user-md"></i>
                         <p>
-                            Nom Médecin Or Secrétaire
+                            {{-- {{ Auth::user()->name }} --}}
                         </p>
                     </a>
                 <li class="nav-item">
