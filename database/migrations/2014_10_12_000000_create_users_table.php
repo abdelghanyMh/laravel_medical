@@ -20,10 +20,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->string('username');
-            $table->string('specialty');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            //0 = User, 1 = Editor, 2 = Admin
+            $table->tinyInteger('role')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

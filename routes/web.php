@@ -22,27 +22,39 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->middleware('guest');
+
+Route::middleware(['auth', 'user-role:admin'])->group(function () {
+    Route::resource('users',  UsersController::class)->middleware('auth');
 });
 
-// Route::view('/users', 'users');
+Route::middleware(['auth', 'user-role:doctor'])->group(function () {
 
-// TODO add Is admin restriction 
-Route::resource('users',  UsersController::class);
+    Route::get('/scans/{id}/download', [ScansController::class, 'download'])
+        ->name('scans.download');
+
+    Route::resource('scans', ScansController::class);
+
+    Route::resource('orientationLtr', OrientationLtrController::class);
+
+    Route::get('/prescriptions/{id}/print', [PrescriptionsController::class, 'print'])
+        ->name('prescriptions.print');
+    Route::resource('prescriptions', PrescriptionsController::class);
+});
+
+Route::middleware(['auth', 'user-role:doctor|secretary'])->group(function () {
+
+    Route::resource('patients', PatientsController::class);
+
+    Route::resource('appointment', AppointmentController::class);
+});
 
 
-Route::get('/scans/{id}/download', [ScansController::class, 'download'])->name('scans.download');
 
-Route::resource('scans', ScansController::class);
+Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])
+    ->name('login')
+    ->middleware('guest');
 
-Route::resource('orientationLtr', OrientationLtrController::class);
-
-Route::resource('patients', PatientsController::class);
-
-Route::resource('appointment', AppointmentController::class);
-
-Route::get('/prescriptions/{id}/print', [PrescriptionsController::class, 'print'])->name('prescriptions.print');
-Route::resource('prescriptions', PrescriptionsController::class);
-
-Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('login');
-
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])
+    ->name('logout')
+    ->middleware('auth');

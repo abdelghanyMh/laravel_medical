@@ -45,6 +45,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // TODO refactor using enums
+
+    public function getRoleAttribute($value)
+    {
+        return ["doctor", "secretary", "admin"][$value];
+    }
+
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
