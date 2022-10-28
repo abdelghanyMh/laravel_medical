@@ -11,6 +11,9 @@
                     <div class="container">
                         <form class="needs-validation" method="post" action="{{ route('patients.store') }}" novalidate>
                             @csrf
+                            @if (\App\Enums\UserRoles::isDoctor(Auth::user()->role))
+                                <input type="number" name="doctor_id" value="{{Auth::user()->id}}" hidden>
+                            @endif
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="model-field">

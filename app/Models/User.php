@@ -48,15 +48,17 @@ class User extends Authenticatable
         'role'=>UserRoles::class,
     ];
 
-    // // TODO refactor using enums
-
-    // public function getRoleAttribute($value)
-    // {
-    //     return ["doctor", "secretary", "admin"][$value];
-    // }
 
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
     }
+/**
+ * The patients that belong to the User
+ */
+public function patients()
+{
+    return $this->belongsToMany(Patient::class,'doctor_patient');
+}
+    
 }

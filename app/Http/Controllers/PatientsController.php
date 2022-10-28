@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PatientFormRequest;
 use App\Models\Patient;
+use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PatientsController extends Controller
 {
@@ -17,7 +20,7 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all();
+        $patients= Auth::user()->patients()->orderBy('lastname')->get();
         return view('patients.index', ['patients' => $patients]);
     }
 
@@ -40,8 +43,14 @@ class PatientsController extends Controller
     public function store(PatientFormRequest $request)
     {
         $validated = $request->validated();
-        Debugbar::info($validated);
         $patient = Patient::create($validated);
+
+        // If this patient was added by the doctor 
+        // we add Create a new Record to the doctor_patient db table
+        if ( isset($request->doctor_id)) {
+            $doctor = User::find($request->doctor_id);
+            $doctor->patients()->attach($patient->id);
+        }
 
         return redirect()
             ->route('patients.index')

@@ -9,4 +9,9 @@ public static function values(): array
          return array_column(self::cases(), 'value','name');
         // ["deposit" => "Deposit", "withdraw" => "Withdraw"]
     }
+public static  function isDoctor( UserRoles $useRole)
+{
+    return $useRole->value == UserRoles::DOCTOR->value;
+}
+
 }
