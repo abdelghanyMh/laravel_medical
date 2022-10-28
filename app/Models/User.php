@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Enums\UserRoles;
+
 
 class User extends Authenticatable
 {
@@ -23,7 +25,7 @@ class User extends Authenticatable
         'username',
         'password',
         'email',
-        'specialty',
+        'role',
     ];
 
     /**
@@ -43,14 +45,15 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'role'=>UserRoles::class,
     ];
 
-    // TODO refactor using enums
+    // // TODO refactor using enums
 
-    public function getRoleAttribute($value)
-    {
-        return ["doctor", "secretary", "admin"][$value];
-    }
+    // public function getRoleAttribute($value)
+    // {
+    //     return ["doctor", "secretary", "admin"][$value];
+    // }
 
     public function appointments()
     {

@@ -101,9 +101,9 @@
                                             <select id="role" name="role"
                                                 class=" @error('role') error-border @enderror model-field__input form-control"
                                                 required>
-                                                <option value="0">Doctor</option>
-                                                <option value="1">Secretary</option>
-                                                <option value="2">Admin</option>
+                                                @foreach (App\Enums\UserRoles::values() as $key => $value)
+                                                    <option value="{{ $value}}">{{ $key }}</option>
+                                                @endforeach
                                             </select>
                                             <label for="role" class="model-field__label">role</label>
                                             @error('role')

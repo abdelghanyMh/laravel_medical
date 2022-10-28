@@ -30,7 +30,7 @@
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="users_table"
                                         aria-label="CSS grade: activate to sort column ascending">
-                                        specialty
+                                        role
                                     </th>
                                     <th>
                                         Actions
@@ -48,7 +48,7 @@
                                         <td>{{ $user['lastname'] }}</td>
                                         <td>{{ $user['username'] }}</td>
                                         <td>{{ $user['email'] }}</td>
-                                        <td>{{ $user['specialty'] }}</td>
+                                        <td>{{ $user['role'] }}</td>
                                         <td
                                             style="padding-right: -3.25rem;border-right-width: 0px;height: 37px;width: 95.833px;">
                                             <a href="{{ route('users.edit', [$user]) }}" class="btn btn-app btn-modify"

@@ -42,9 +42,11 @@
                     <a href="#" class="nav-link">
                         <i class=" nav-icon fas fa-user-md"></i>
                         <p>
-                            {{-- {{ Auth::user()->name }} --}}
+                            {{ Auth::user()->name }} {{ Auth::user()->lastname }}
                         </p>
                     </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('patients.index') }}" class="nav-link">
                         <i class=" nav-icon fas fa-plus-circle"></i>
@@ -60,13 +62,16 @@
                         </p>
                     </a>
                 </li>
-                <!-- FIXME:if admin  AUTHORISATION -->
-                <li class="nav-item">
-                    <a href="{{ route('users.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>Users list</p>
-                    </a>
-                </li>
+                {{-- display only for admin --}}
+                @if (Auth::user()->role->value == \App\Enums\UserRoles::ADMIN->value)
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Users list</p>
+                        </a>
+                    </li>
+                @endif
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

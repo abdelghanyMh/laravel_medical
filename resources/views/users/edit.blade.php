@@ -95,16 +95,14 @@
                     <div class="col-sm">
                         <div class="model-field">
                             <div class="model-field__control">
-                                <select name="specialty"
-                                    class=" @error('specialty') error-border @enderror model-field__input form-control"
-                                    required>
-                                    <!--TODO find how to add this 3 value to the db migration? get them from the db not hardcode them in frontend -->
-                                    <option @if ($user->email === 'Médecin') 'selected' @endif>Médecin</option>
-                                    <option>Secrétaire</option>
-                                    <option>Administrateur</option>
+                                <select name="role"
+                                    class=" @error('role') error-border @enderror model-field__input form-control" required>
+                                    @foreach (App\Enums\UserRoles::values() as $key => $value)
+                                        <option value="{{ $value }}" @if (Auth::user()->role->value === $value) selected @endif>{{ $key }}</option>
+                                    @endforeach
                                 </select>
-                                <label for="specialty" class="model-field__label">specialty</label>
-                                @error('specialty')
+                                <label for="role" class="model-field__label">role</label>
+                                @error('role')
                                     <div class="error">{{ $message }}</div>
                                 @enderror
                                 <div class="model-field__bar"></div>

@@ -29,7 +29,7 @@ class UserFormRequest extends FormRequest
             'username' =>  'required',
             'password' =>  'required',
             'email' =>  'required',
-            'specialty' =>  'required',
+            'role' =>  'required',
         ];
     }
 }

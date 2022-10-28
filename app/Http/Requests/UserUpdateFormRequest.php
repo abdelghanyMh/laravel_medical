@@ -28,7 +28,7 @@ class UserUpdateFormRequest extends FormRequest
             'lastname' => 'required',
             'username' =>  'required',
             'email' =>  'required',
-            'specialty' =>  'required',
+            'role' =>  'required',
         ];
     }
 }

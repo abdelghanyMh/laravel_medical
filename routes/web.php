@@ -8,7 +8,6 @@ use App\Http\Controllers\PrescriptionsController;
 use App\Http\Controllers\ScansController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +23,11 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('guest');
 
-Route::middleware(['auth', 'user-role:admin'])->group(function () {
-    Route::resource('users',  UsersController::class)->middleware('auth');
+Route::middleware(['auth', 'user-role:ADMIN'])->group(function () {
+    Route::resource('users',  UsersController::class);
 });
 
-Route::middleware(['auth', 'user-role:doctor'])->group(function () {
+Route::middleware(['auth', 'user-role:DOCTOR'])->group(function () {
 
     Route::get('/scans/{id}/download', [ScansController::class, 'download'])
         ->name('scans.download');
@@ -42,7 +41,7 @@ Route::middleware(['auth', 'user-role:doctor'])->group(function () {
     Route::resource('prescriptions', PrescriptionsController::class);
 });
 
-Route::middleware(['auth', 'user-role:doctor|secretary'])->group(function () {
+Route::middleware(['auth', 'user-role:DOCTOR|SECRETARY'])->group(function () {
 
     Route::resource('patients', PatientsController::class);
 
