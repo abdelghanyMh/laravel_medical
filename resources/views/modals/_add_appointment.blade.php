@@ -15,18 +15,23 @@
                         <form class="needs-validation" method="POST" action="{{ route('appointment.store') }}"
                             novalidate>
                             @csrf
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="model-field">
-                                        <div class="model-field__control">
-                                            <input id="doctor" name="doctor" type="text"
-                                                class="model-field__input form-control" placeholder="" required />
-                                            <label for="doctor" class="model-field__label">doctor</label>
-                                            <div class="model-field__bar"></div>
+                            @if (Auth::user()->role->value == \App\Enums\UserRoles::DOCTOR->value)
+                                <input id="doctor" name="doctor_id" type="number" value="{{ Auth::user()->id}}"  hidden/>      
+                            @else
+                           
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="model-field">
+                                            <div class="model-field__control">
+                                                <input id="doctor" name="doctor_id" type="number"
+                                                    class="model-field__input form-control" placeholder="" required />
+                                                <label for="doctor" class="model-field__label">doctor</label>
+                                                <div class="model-field__bar"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="model-field">

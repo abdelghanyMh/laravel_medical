@@ -7,6 +7,9 @@ use App\Models\Patient;
 use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use ModelHelpers;
+
 
 class AppointmentController extends Controller
 {
@@ -18,7 +21,7 @@ class AppointmentController extends Controller
     // $id
     public function index()
     {
-        $doctor = User::find(1);
+        $doctor = User::find(Auth::user()->id);
         $appointments = $doctor->appointments;
         return view('appointments.index', ['appointments' => $appointments]);
     }
@@ -41,17 +44,24 @@ class AppointmentController extends Controller
      */
     public function store(AppointmentFormRequest $request)
     {
-        $patient = Patient::find(1);
-        $doctor = User::find(1);
+        // TODO just like odoo
+        $patient = Patient::all()->first();
+        
+        // $doctor = User::find($request->doctor_id);
 
         $validated = $request->validated();
 
         $patient->appointments()->create(
             array_merge(
                 $validated,
-                ['user_id' => $doctor->id],
+                ['user_id' =>$request->doctor_id],
             )
         );
+
+        // If a patient will have an appointment with a doctor 
+        // we attachPatient to the current doctor
+            ModelHelpers::attachPatient($request->doctor_id,$patient->id);
+        
 
         return back()
             ->with('success', 'a new appointment is created');

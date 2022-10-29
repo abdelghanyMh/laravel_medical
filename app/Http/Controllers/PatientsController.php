@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PatientFormRequest;
 use App\Models\Patient;
-use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use ModelHelpers;
 
 
 class PatientsController extends Controller
@@ -46,10 +46,9 @@ class PatientsController extends Controller
         $patient = Patient::create($validated);
 
         // If this patient was added by the doctor 
-        // we add Create a new Record to the doctor_patient db table
+        // we attachPatient to the current doctor
         if ( isset($request->doctor_id)) {
-            $doctor = User::find($request->doctor_id);
-            $doctor->patients()->attach($patient->id);
+            ModelHelpers::attachPatient($request->doctor_id,$patient->id);
         }
 
         return redirect()
@@ -105,4 +104,6 @@ class PatientsController extends Controller
     {
         //
     }
+
+    
 }
