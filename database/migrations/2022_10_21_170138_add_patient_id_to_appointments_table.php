@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('appointments', function (Blueprint $table) {
             $table->foreignId('patient_id')
                 ->constrained()
-                ->onDelete('cascade');
+            ->onDelete('cascade');
         });
     }
 
@@ -28,8 +28,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('appointments', function (Blueprint $table) {
-            // $table->dropForeign('patient_id');
-            // $table->dropColumn('patient_id');
+            $table->dropForeign(['patient_id']);
+            $table->dropColumn('patient_id');
         });
     }
 };
