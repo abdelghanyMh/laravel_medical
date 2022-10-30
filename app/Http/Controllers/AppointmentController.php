@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRoles;
 use App\Http\Requests\AppointmentFormRequest;
 use App\Models\Patient;
 use App\Models\User;
+use App\Models\Appointment;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,8 +23,20 @@ class AppointmentController extends Controller
     // $id
     public function index()
     {
-        $doctor = User::find(Auth::user()->id);
-        $appointments = $doctor->appointments;
+        $appointments = [];
+
+        // FIXME hide private appointment 
+        // when we implement private patient(that are created by the doctor himself)
+
+        // find all  appointment to secretary
+        if (UserRoles::isSecretary(Auth::user()->role)) {
+            $appointments = Appointment::all();
+        }
+        // find all  appointment assigned to a doctor
+        else if (UserRoles::isDoctor(Auth::user()->role)) {
+            $doctor = User::find(Auth::user()->id);
+            $appointments = $doctor->appointments;
+        }
         return view('appointments.index', ['appointments' => $appointments]);
     }
 
@@ -44,27 +58,25 @@ class AppointmentController extends Controller
      */
     public function store(AppointmentFormRequest $request)
     {
-        // TODO just like odoo
-        $patient = Patient::all()->first();
-        
-        // $doctor = User::find($request->doctor_id);
+        $patient = Patient::find($request->patient_id);
 
         $validated = $request->validated();
 
         $patient->appointments()->create(
             array_merge(
                 $validated,
-                ['user_id' =>$request->doctor_id],
+                ['user_id' => $request->doctor_id],
             )
         );
 
         // If a patient will have an appointment with a doctor 
         // we attachPatient to the current doctor
-            ModelHelpers::attachPatient($request->doctor_id,$patient->id);
-        
+        ModelHelpers::attachPatient($request->doctor_id, $patient->id);
+
 
         return back()
             ->with('success', 'a new appointment is created');
+            
     }
 
     /**

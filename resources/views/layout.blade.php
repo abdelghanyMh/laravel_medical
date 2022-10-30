@@ -27,7 +27,11 @@
     <!-- Custom style -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+    
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+
 </head>
 
 <body class="hold-transition sidebar-mini sidebar-collapse">

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ModelHelpers;
 use App\Http\Requests\PatientFormRequest;
 use App\Models\Patient;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use ModelHelpers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 
 class PatientsController extends Controller
@@ -20,10 +21,22 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        $patients= Auth::user()->patients()->orderBy('lastname')->get();
+        $patients = Auth::user()
+            ->patients()
+            ->orderBy('lastname')
+            ->get();
         return view('patients.index', ['patients' => $patients]);
     }
 
+    // find the  patients whose  names or last name match the query provided  
+    public function findByQuery(Request $request)
+    {
+        $result = Patient::select('id', DB::raw("CONCAT(patients.name,' ',patients.lastname) as text"))
+            ->where('lastname', 'LIKE', '%' . request('queryTerm') . '%')
+            ->orWhere('name', 'LIKE', '%' . request('queryTerm') . '%')
+            ->get();
+        return response()->json($result);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -47,8 +60,8 @@ class PatientsController extends Controller
 
         // If this patient was added by the doctor 
         // we attachPatient to the current doctor
-        if ( isset($request->doctor_id)) {
-            ModelHelpers::attachPatient($request->doctor_id,$patient->id);
+        if (isset($request->doctor_id)) {
+            ModelHelpers::attachPatient($request->doctor_id, $patient->id);
         }
 
         return redirect()
@@ -104,6 +117,4 @@ class PatientsController extends Controller
     {
         //
     }
-
-    
 }

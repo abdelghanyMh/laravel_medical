@@ -68,20 +68,69 @@
     $('#end_time').datetimepicker({
         format: 'LT'
     })
-    
+
     // inputmsk Code start (__-__)
     $('[data-mask]').inputmask()
+
+
+
+    $(document).ready(function() {
+
+        const token = "{{ csrf_token() }}"
+        // Populate Select2 with AJAX data 
+
+        // 1. get the patients whose name and last names match the query provided
+        $('.select2-patient-ajax').select2({
+
+            ajax: {
+                url: "{{ route('patients.findByQuery') }}",
+                type: 'post',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        _token: token,
+                        queryTerm: params.term,
+                    };
+                },
+                processResults: function(response) {
+                    return {
+                        results: response
+                    }
+                },
+                cache: true
+            }
+        });
+
+        // 2. get the doctors whose name and last names match the query provided 
+        $('.select2-doctor-ajax').select2({
+
+            ajax: {
+                url: "{{ route('users.findByQuery') }}",
+                type: 'post',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        _token: token,
+                        queryTerm: params.term,
+                    };
+                },
+                processResults: function(response) {
+                    return {
+                        results: response
+                    }
+                },
+                // cache: true
+            }
+        });
+
+    });
 </script>
 <script>
     // FIXME check whether these imports are required
 
     $(function() {
-        //Initialize Select2 Elements
-        $('.select2').select2()
-        //Initialize Select2 Elements
-        $('.select2bs4').select2({
-            theme: 'bootstrap4'
-        })
         $("input[data-bootstrap-switch]").each(function() {
             $(this).bootstrapSwitch('state', $(this).prop('checked'));
         })

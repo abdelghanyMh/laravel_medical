@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserFormRequest;
 use App\Http\Requests\UserUpdateFormRequest;
 use App\Models\User;
+use App\Enums\UserRoles;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
+
 
 class UsersController extends Controller
 {
@@ -20,6 +25,23 @@ class UsersController extends Controller
     {
         $users = User::all();
         return view('users.index', ['users' => $users]);
+    }
+
+    /**
+     * find the  doctors whose  names or last name match the query provided  
+     **/
+    public function findByQuery(Request $request)
+    {
+        $result = User::select('id', DB::raw("CONCAT(users.name,' ',users.lastname) as text"))
+            ->where('role', UserRoles::DOCTOR->value)
+            ->where(function($query) {
+                $query ->where('lastname', 'LIKE', '%' . request('queryTerm') . '%')
+                ->orWhere('name', 'LIKE', '%' . request('queryTerm') . '%');
+            })
+            ->get();
+            // select id , concat(name,'_',lastname) from users where role  = 0  and  (name = queryTerm or lastname = queryTerm )
+
+        return response()->json($result);
     }
 
     /**

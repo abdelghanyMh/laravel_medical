@@ -8,23 +8,24 @@ use App\Http\Controllers\PrescriptionsController;
 use App\Http\Controllers\ScansController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
+
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+ |--------------------------------------------------------------------------
+ | Web Routes
+ |--------------------------------------------------------------------------
+ |
+ | Here is where you can register web routes for your application. These
+ | routes are loaded by the RouteServiceProvider within a group which
+ | contains the "web" middleware group. Now create something great!
+ |
+ */
 
 Route::get('/', function () {
     return view('welcome');
 })->middleware('guest');
 
 Route::middleware(['auth', 'user-role:ADMIN'])->group(function () {
-    Route::resource('users',  UsersController::class);
+    Route::resource('users', UsersController::class);
 });
 
 Route::middleware(['auth', 'user-role:DOCTOR'])->group(function () {
@@ -42,18 +43,23 @@ Route::middleware(['auth', 'user-role:DOCTOR'])->group(function () {
 });
 
 Route::middleware(['auth', 'user-role:DOCTOR|SECRETARY'])->group(function () {
-
+    Route::post('/patients/find', [PatientsController::class, 'findByQuery'])
+        ->name('patients.findByQuery');
     Route::resource('patients', PatientsController::class);
 
     Route::resource('appointment', AppointmentController::class);
 });
-
-
-
-Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])
+Route::match (['get', 'post'], '/login', [AuthController::class, 'login'])
     ->name('login')
     ->middleware('guest');
 
 Route::get('/logout', [AuthController::class, 'logout'])
     ->name('logout')
     ->middleware('auth');
+
+Route::middleware(['auth', 'user-role:SECRETARY'])->group(function () {
+    // TODO is this danger
+    // the fact that secretary can access userController?_?
+    Route::post('/users/find', [UsersController::class, 'findByQuery'])
+        ->name('users.findByQuery');
+});

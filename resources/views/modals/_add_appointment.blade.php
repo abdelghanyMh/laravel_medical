@@ -15,31 +15,31 @@
                         <form class="needs-validation" method="POST" action="{{ route('appointment.store') }}"
                             novalidate>
                             @csrf
-                            @if (Auth::user()->role->value == \App\Enums\UserRoles::DOCTOR->value)
-                                <input id="doctor" name="doctor_id" type="number" value="{{ Auth::user()->id}}"  hidden/>      
+
+                            @if (\App\Enums\UserRoles::isDoctor(Auth::user()->role))
+                                <input id="doctor" name="doctor_id" type="number" value="{{ Auth::user()->id }}"
+                                    hidden />
                             @else
-                           
                                 <div class="row">
                                     <div class="col-sm">
-                                        <div class="model-field">
+                                        <div class="form-group">
+                                            <label>Doctor</label>
                                             <div class="model-field__control">
-                                                <input id="doctor" name="doctor_id" type="number"
-                                                    class="model-field__input form-control" placeholder="" required />
-                                                <label for="doctor" class="model-field__label">doctor</label>
-                                                <div class="model-field__bar"></div>
+                                                <select name='doctor_id'
+                                                    class=" form-control select2-doctor-ajax"></select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             @endif
+
                             <div class="row">
                                 <div class="col-sm">
-                                    <div class="model-field">
+                                    <div class="form-group">
+                                        <label>Patient</label>
                                         <div class="model-field__control">
-                                            <input id="patient" name="patient" type="text"
-                                                class="model-field__input form-control" placeholder=" " required />
-                                            <label for="patient" class="model-field__label">Patient</label>
-                                            <div class="model-field__bar"></div>
+                                            <select name='patient_id'
+                                                class=" form-control select2-patient-ajax"></select>
                                         </div>
                                     </div>
                                 </div>
