@@ -13,5 +13,9 @@ public static  function isDoctor( UserRoles $useRole)
 {
     return $useRole->value == UserRoles::DOCTOR->value;
 }
+public static  function isSecretary( UserRoles $useRole)
+{
+    return $useRole->value == UserRoles::SECRETARY->value;
+}
 
 }
