@@ -12,6 +12,6 @@ class ModelHelpers {
     public static function attachPatient($doctorID,$patientID)
     {
         $doctor = User::find($doctorID);
-        $doctor->patients()->sync($patientID);
+        $doctor->patients()->syncWithoutDetaching($patientID);
     }
 }
