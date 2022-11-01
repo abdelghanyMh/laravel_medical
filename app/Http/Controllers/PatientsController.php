@@ -22,9 +22,13 @@ class PatientsController extends Controller
     public function index()
     {
         $patients = Auth::user()
-            ->patients()
-            ->orderBy('lastname')
-            ->get();
+            ->patients(
+            )
+            ->orderBy(
+                'lastname'
+            )
+            ->get(
+            );
         return view('patients.index', ['patients' => $patients]);
     }
 
@@ -32,9 +36,16 @@ class PatientsController extends Controller
     public function findByQuery(Request $request)
     {
         $result = Patient::select('id', DB::raw("CONCAT(patients.name,' ',patients.lastname) as text"))
-            ->where('lastname', 'LIKE', '%' . request('queryTerm') . '%')
-            ->orWhere('name', 'LIKE', '%' . request('queryTerm') . '%')
-            ->get();
+            ->where(
+                'lastname',
+                'LIKE', '%' . request('queryTerm') . '%'
+            )
+            ->orWhere(
+                'name',
+                'LIKE', '%' . request('queryTerm') . '%'
+            )
+            ->get(
+            );
         return response()->json($result);
     }
     /**
@@ -62,11 +73,24 @@ class PatientsController extends Controller
         // we attachPatient to the current doctor
         if (isset($request->doctor_id)) {
             ModelHelpers::attachPatient($request->doctor_id, $patient->id);
+
+            return redirect()
+                ->route(
+                    'patients.show',
+                    ['patient' => $patient]
+                )
+                ->with(
+                    'success', 'patients: ' . $patient->name . ' is created '
+                );
         }
 
         return redirect()
-            ->route('patients.index')
-            ->with('success', 'patients: ' . $patient->name . ' is created ');
+            ->route(
+                'patients.index'
+            )
+            ->with(
+                'success', 'patients: ' . $patient->name . ' is created '
+            );
     }
 
     /**
@@ -77,7 +101,32 @@ class PatientsController extends Controller
      */
     public function show(Patient $patient)
     {
-        return view('patients.show', ['patient' => $patient]);
+
+        // current doctor ID
+        $doctor_id = Auth::user()->id;
+
+        // A list of doctor-patient appointments
+        $appointments = $patient->appointments()->where('user_id', $doctor_id)->get();
+
+        // A list of doctor-patient orientationLtrs
+        $orientationLtrs = $patient->orientationLtrs()->where('user_id', $doctor_id)->get();
+        
+        // A list of doctor-patient prescriptions
+        $prescriptions = $patient->prescriptions()->where('user_id', $doctor_id)->get();
+        
+        // A list of doctor-patient scans
+        $scans = $patient->scans()->where('user_id', $doctor_id)->get();
+
+        return view(
+            'patients.show',
+            [
+                'patient' => $patient,
+                'appointments' => $appointments,
+                'prescriptions'=>$prescriptions,
+                'scans'=>$scans,
+                'orientationLtrs'=>$orientationLtrs,
+            ]
+        );
     }
 
     /**
@@ -104,7 +153,9 @@ class PatientsController extends Controller
         $patient->update($validated);
 
         return back()
-            ->with('success', 'patients: ' . $patient->name . ' is updated! ');
+        ->with(
+                'success', 'patients: ' . $patient->name . ' is updated! '
+            );
     }
 
     /**
