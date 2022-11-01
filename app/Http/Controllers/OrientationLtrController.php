@@ -8,6 +8,7 @@ use App\Models\Patient;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailables\Content;
+use Illuminate\Support\Facades\Auth;
 
 class OrientationLtrController extends Controller
 {
@@ -39,15 +40,22 @@ class OrientationLtrController extends Controller
      */
     public function store(Request $request)
     {
-        // $bodyContent = $request->getContent();
-        // Debugbar::info($bodyContent);
+
+        // current doctor ID
+        $doctor_id = Auth::user()->id;
 
         $patient = Patient::find($request->patient_id);
-        $patient->orientationLtrs()->create([
-            'content' => $request->content,
-        ]);
+        $patient->orientationLtrs()->create(
+            [
+                'content' => $request->content,
+                'user_id' => $doctor_id
+            ]
+        );
         return back()
-            ->with('success', 'a new orientation letter is created');
+            ->with(
+                'success',
+                'a new orientation letter is created'
+            );
     }
 
     /**

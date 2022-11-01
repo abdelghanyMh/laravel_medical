@@ -1,165 +1,8 @@
 @extends('layout')
 @section('title', 'Patients Management')
-@section('header', 'Patients list')
+@section('header', 'Patient\'s profile')
 
 @section('content')
-
-
-    <!-- Appointment  box -->
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Appointment</h3>
-
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-
-            </div>
-        </div>
-        <div id="infoMedical" class="card-body" style="display: block;">
-
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table id="appointment_table" class="table table-bordered table-striped dataTable dtr-inline"
-                            role="grid" aria-describedby="example1_info">
-                            <thead>
-                                <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-sort="ascending"
-                                        aria-label="Rendering engine: activate to sort column descending">
-                                        Date</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Browser: activate to sort column ascending">
-                                        Start time</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Platform(s): activate to sort column ascending">
-                                        end time</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="Engine version: activate to sort column ascending">
-                                        motivation</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-label="CSS grade: activate to sort column ascending">
-                                        actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $counter = 1;
-                                @endphp
-
-                                @foreach ($patient->appointments as $appointment)
-                                    <tr role="row" class="{{ $counter % 2 == 0 ? 'even' : 'odd' }}">
-                                        <td class="dtr-control sorting_1" tabindex="0">
-                                            {{ $appointment['date'] }}</td>
-                                        <td>{{ $appointment['start_time'] }}</td>
-                                        <td>{{ $appointment['end_time'] }}</td>
-                                        <td>{{ $appointment['motivation'] }}</td>
-                                        <td
-                                            style="padding-right: -3.25rem;border-right-width: 0px;height: 37px;width: 95.833px;">
-                                            TBD later
-                                            {{-- <a href="{{ route('scans.show', [$appointment->id]) }}"
-                                                class="btn btn-profile btn-del"
-                                                style="height: 41px;min-width: 46px;margin: 0px;padding: 0px;"
-                                                title="preview"><i class="fas fa-external-link-alt"></i></a>
-
-                                            <a href="{{ route('scans.download', $appointment->id) }}"
-                                                class="btn btn-app btn-modify"
-                                                style="height: 41px;min-width: 46px;margin: 0px;padding: 0px;">
-                                                <i class="fas fa-download"></i>
-                                            </a> --}}
-
-                                        </td>
-                                    </tr>
-                                    @php
-                                        $counter++;
-                                    @endphp
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <button type="button" class="  btn-success add-btn" data-toggle="modal"
-                            data-target="#modal_add_appointment">
-                            +
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /. Appointment  box -->
-
-    <!-- Prescription Médicale  box -->
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Medication prescriptions</h3>
-
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-
-            </div>
-        </div>
-        <div class="card-body" style="display: block;">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table id="prescriptions_table" class="table table-bordered table-striped dataTable dtr-inline"
-                            role="grid" aria-describedby="example1_info">
-                            <thead>
-                                <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-sort="ascending"
-                                        aria-label="Rendering engine: activate to sort column descending">
-                                        Date</th>
-
-
-                                    <th rowspan="1" colspan="1">
-                                        <!-- ligne de prescription -->
-
-                                    </th>
-                                    <th rowspan="1" colspan="1">
-                                        <!-- ligne de prescription -->
-                                        action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $counter = 1;
-                                @endphp
-
-                                @foreach ($patient->prescriptions as $prescription)
-                                    <tr role="row" class="{{ $counter % 2 == 0 ? 'even' : 'odd' }}">
-                                        <td class="dtr-control sorting_1" tabindex="0">
-                                            {{ $prescription['updated_at'] }}</td>
-                                        <td>{{ $prescription['content'] }}</td>
-
-                                        <td>
-                                            <a href="{{ route('prescriptions.print', [$prescription->id]) }}"
-                                                target="_blank" class="btn btn-default"><i class="fa fa-print"></i>
-                                                Print</a>
-                                        </td>
-                                    </tr>
-                                    @php
-                                        $counter++;
-                                    @endphp
-                                @endforeach
-                            </tbody>
-
-                        </table>
-                        <button type="button" class="  btn-success add-btn" data-toggle="modal"
-                            data-target="#modal_add_prescription">
-                            +
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.Prescription Médicale  box -->
-
     <!-- info non medical  box -->
     <div class="card">
         <div class="card-header">
@@ -372,7 +215,160 @@
     </div>
     <!-- /. info  medical -->
 
+    <!-- Appointment  box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Appointment</h3>
 
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+
+            </div>
+        </div>
+        <div class="card-body" style="display: block;">
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="appointment_table" class="table table-bordered table-striped dataTable dtr-inline"
+                            role="grid" aria-describedby="example1_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Rendering engine: activate to sort column descending">
+                                        Date</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-label="Browser: activate to sort column ascending">
+                                        Start time</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending">
+                                        end time</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-label="Engine version: activate to sort column ascending">
+                                        motivation</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending">
+                                        actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $counter = 1;
+                                @endphp
+
+                                @foreach ($appointments as $appointment)
+                                    <tr role="row" class="{{ $counter % 2 == 0 ? 'even' : 'odd' }}">
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            {{ $appointment['date'] }}</td>
+                                        <td>{{ $appointment['start_time'] }}</td>
+                                        <td>{{ $appointment['end_time'] }}</td>
+                                        <td>{{ $appointment['motivation'] }}</td>
+                                        <td
+                                            style="padding-right: -3.25rem;border-right-width: 0px;height: 37px;width: 95.833px;">
+                                            TBD later
+                                            {{-- <a href="{{ route('scans.show', [$appointment->id]) }}"
+                                            class="btn btn-profile btn-del"
+                                            style="height: 41px;min-width: 46px;margin: 0px;padding: 0px;"
+                                            title="preview"><i class="fas fa-external-link-alt"></i></a>
+
+                                        <a href="{{ route('scans.download', $appointment->id) }}"
+                                            class="btn btn-app btn-modify"
+                                            style="height: 41px;min-width: 46px;margin: 0px;padding: 0px;">
+                                            <i class="fas fa-download"></i>
+                                        </a> --}}
+
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $counter++;
+                                    @endphp
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <button type="button" class="  btn-success add-btn" data-toggle="modal"
+                            data-target="#modal_add_appointment">
+                            +
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. Appointment  box -->
+
+    <!-- Prescription Médicale  box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Medication prescriptions</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+
+            </div>
+        </div>
+        <div class="card-body" style="display: block;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="prescriptions_table" class="table table-bordered table-striped dataTable dtr-inline"
+                            role="grid" aria-describedby="example1_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Rendering engine: activate to sort column descending">
+                                        Date</th>
+
+
+                                    <th rowspan="1" colspan="1">
+                                        <!-- ligne de prescription -->
+
+                                    </th>
+                                    <th rowspan="1" colspan="1">
+                                        <!-- ligne de prescription -->
+                                        action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $counter = 1;
+                                @endphp
+
+                                @foreach ($prescriptions as $prescription)
+                                    <tr role="row" class="{{ $counter % 2 == 0 ? 'even' : 'odd' }}">
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            {{ $prescription['updated_at'] }}</td>
+                                        <td>{{ $prescription['content'] }}</td>
+
+                                        <td>
+                                            <a href="{{ route('prescriptions.print', [$prescription->id]) }}"
+                                                target="_blank" class="btn btn-default"><i class="fa fa-print"></i>
+                                                Print</a>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $counter++;
+                                    @endphp
+                                @endforeach
+                            </tbody>
+
+                        </table>
+                        <button type="button" class="  btn-success add-btn" data-toggle="modal"
+                            data-target="#modal_add_prescription">
+                            +
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.Prescription Médicale  box -->
 
     <!--  Medical scans  box -->
     <div class="card">
@@ -406,7 +402,7 @@
                                 @php
                                     $counter = 1;
                                 @endphp
-                                @foreach ($patient->scans as $scan)
+                                @foreach ($scans as $scan)
                                     <tr role="row" class="{{ $counter % 2 == 0 ? 'even' : 'odd' }}">
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             {{ $scan['updated_at'] }}</td>
@@ -486,7 +482,7 @@
                                     $counter = 1;
                                 @endphp
 
-                                @foreach ($patient->orientationLtrs as $ltr)
+                                @foreach ($orientationLtrs as $ltr)
                                     <tr role="row" class="{{ $counter % 2 == 0 ? 'even' : 'odd' }}">
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             {{ $ltr['updated_at'] }}</td>
@@ -517,9 +513,9 @@
         </div>
     </div>
     <!-- /.Lettres d'Orientation Médicale  box -->
+
     @include('modals._add_scan', ['patient' => $patient])
     @include('modals._add_orientationLtr', ['patient' => $patient])
     @include('modals._add_appointment')
     @include('modals._add_prescription', ['patient' => $patient])
-
 @endsection

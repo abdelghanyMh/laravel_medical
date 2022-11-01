@@ -15,6 +15,7 @@ class Prescription extends Model
      */
     protected $fillable = [
         'content',
+        'user_id',
     ];
 
     // Return the patient for whom this Prescription was written 

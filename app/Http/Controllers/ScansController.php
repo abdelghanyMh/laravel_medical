@@ -6,6 +6,7 @@ use App\Http\Requests\ScanFormRequest;
 use App\Models\Patient;
 use App\Models\Scan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ScansController extends Controller
 {
@@ -37,17 +38,26 @@ class ScansController extends Controller
      */
     public function store(ScanFormRequest $request)
     {
+        // current doctor ID
+        $doctor_id = Auth::user()->id;
+
         $patient = Patient::find($request->patient_id);
         $validated = $request->validated();
 
         $patient->scans()->create(
             array_merge(
                 $validated,
-                ['scan_path' =>  $this->storeScan($request)]
+                [
+                    'scan_path' => $this->storeScan($request),
+                    'user_id' => $doctor_id
+                ]
             )
         );
         return back()
-            ->with('success', 'a new Scan is created');
+            ->with(
+                'success',
+                'a new Scan is created'
+            );
     }
 
     /**
@@ -109,6 +119,6 @@ class ScansController extends Controller
     {
         $imageName = time() . '.' . $request->image->extension();
         // upload image to Public Folder
-        return  $request->image->move(public_path('images'), $imageName);
+        return $request->image->move(public_path('images'), $imageName);
     }
 }

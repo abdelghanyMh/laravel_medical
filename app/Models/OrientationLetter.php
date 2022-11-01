@@ -18,6 +18,7 @@ class OrientationLetter extends Model
      */
     protected $fillable = [
         'content',
+        'user_id',
     ];
 
     // return publisher of the post

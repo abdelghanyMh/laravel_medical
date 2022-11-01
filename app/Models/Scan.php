@@ -17,6 +17,7 @@ class Scan extends Model
     protected $fillable = [
         'type',
         'scan_path',
+        'user_id',
     ];
 
     // Return the patient for whom this scan was performed 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PrescriptionsController extends Controller
 {
@@ -36,12 +37,22 @@ class PrescriptionsController extends Controller
      */
     public function store(Request $request)
     {
+        // current doctor ID
+        $doctor_id = Auth::user()->id;
+
         $patient = Patient::find($request->patient_id);
-        $patient->prescriptions()->create([
-            'content' => $request->content,
-        ]);
+
+        $patient->prescriptions()->create(
+            [
+                'content' => $request->content,
+                'user_id' => $doctor_id
+            ]
+        );
         return back()
-            ->with('success', 'a new Prescriptions is created');
+            ->with(
+                'success',
+                'a new Prescriptions is created'
+            );
     }
 
     /**
