@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 })->middleware('guest');
 
 Route::middleware(['auth', 'user-role:ADMIN'])->group(function () {
@@ -49,6 +49,7 @@ Route::middleware(['auth', 'user-role:DOCTOR|SECRETARY|ADMIN'])->group(function 
 
     Route::resource('appointment', AppointmentController::class);
 });
+
 Route::match (['get', 'post'], '/login', [AuthController::class, 'login'])
     ->name('login')
     ->middleware('guest');

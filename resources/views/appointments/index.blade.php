@@ -42,7 +42,7 @@
                                             {{ $appointment['date'] }}</td>
                                         <td>{{ $appointment['start_time'] }}</td>
                                         <td>{{ $appointment['end_time'] }}</td>
-                                        <td>{{ $appointment['motivation'] }}</td>
+                                        <td class="truncate">{{ $appointment['motivation'] }}</td>
 
                                         <td
                                             style="padding-right: -3.25rem;border-right-width: 0px;height: 37px;width: 95.833px;">

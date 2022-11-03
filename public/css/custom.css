@@ -2,9 +2,9 @@
     display: none;
 }
 
-#Header {
+/* #Header {
     margin-left: 84px;
-}
+} */
 
 .appointment_btn {
     display: block;
@@ -249,9 +249,16 @@ span.select2-selection {
 }
 
 .card {
-    margin-left: 84px !important;
+    /* margin-left: 84px !important; */
     /* max-width: 85% !important; */
 }
-table{
+table {
     width: 100% !important;
+}
+
+.truncate {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 1px;
 }
