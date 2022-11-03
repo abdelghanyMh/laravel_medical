@@ -250,5 +250,8 @@ span.select2-selection {
 
 .card {
     margin-left: 84px !important;
-    max-width: 85% !important;
+    /* max-width: 85% !important; */
+}
+table{
+    width: 100% !important;
 }

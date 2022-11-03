@@ -28,7 +28,7 @@ Route::middleware(['auth', 'user-role:ADMIN'])->group(function () {
     Route::resource('users', UsersController::class);
 });
 
-Route::middleware(['auth', 'user-role:DOCTOR'])->group(function () {
+Route::middleware(['auth', 'user-role:DOCTOR|ADMIN'])->group(function () {
 
     Route::get('/scans/{id}/download', [ScansController::class, 'download'])
         ->name('scans.download');
@@ -42,7 +42,7 @@ Route::middleware(['auth', 'user-role:DOCTOR'])->group(function () {
     Route::resource('prescriptions', PrescriptionsController::class);
 });
 
-Route::middleware(['auth', 'user-role:DOCTOR|SECRETARY'])->group(function () {
+Route::middleware(['auth', 'user-role:DOCTOR|SECRETARY|ADMIN'])->group(function () {
     Route::post('/patients/find', [PatientsController::class, 'findByQuery'])
         ->name('patients.findByQuery');
     Route::resource('patients', PatientsController::class);
@@ -57,7 +57,7 @@ Route::get('/logout', [AuthController::class, 'logout'])
     ->name('logout')
     ->middleware('auth');
 
-Route::middleware(['auth', 'user-role:SECRETARY'])->group(function () {
+Route::middleware(['auth', 'user-role:SECRETARY|ADMIN'])->group(function () {
     // TODO is this danger
     // the fact that secretary can access userController?_?
     Route::post('/users/find', [UsersController::class, 'findByQuery'])

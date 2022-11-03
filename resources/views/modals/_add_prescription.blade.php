@@ -56,9 +56,7 @@
                                     <div class="model-field">
                                         <div class="model-field__control">
                                             <textarea id="content" name="content" cols="30" rows="10"
-                                                class="@error('content') error-border @enderror form-field__textarea form-control" required>
-                                               {{ old('content') }}
-                                            </textarea>
+                                                class="@error('content') error-border @enderror form-field__textarea form-control" required>{{ old('content') }}</textarea>
                                             {{-- <label for="content" class="model-field__label">content</label> --}}
                                             <div class="model-field__bar"></div>
                                             <!-- TODO check if i m working-->

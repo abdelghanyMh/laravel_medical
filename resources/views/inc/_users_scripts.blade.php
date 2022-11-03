@@ -31,22 +31,22 @@
 
 <script>
     $("#users_table").ready(function() {
-        $("#users_table").DataTable()
+        $("#users_table").DataTable({responsive: true})
     });
     $("#patients_table").ready(function() {
-        $("#patients_table").DataTable()
+        $("#patients_table").DataTable({responsive: true})
     });
     $("#orientationLtrs_table").ready(function() {
-        $("#orientationLtrs_table").DataTable()
+        $("#orientationLtrs_table").DataTable({responsive: true})
     });
     $("#scans_info").ready(function() {
-        $("#scans_info").DataTable()
+        $("#scans_info").DataTable({responsive: true})
     });
     $("#prescriptions_table").ready(function() {
-        $("#prescriptions_table").DataTable()
+        $("#prescriptions_table").DataTable({responsive: true})
     });
     $("#appointment_table").ready(function() {
-        $("#appointment_table").DataTable()
+        $("#appointment_table").DataTable({responsive: true})
     });
 
     //Date time picker

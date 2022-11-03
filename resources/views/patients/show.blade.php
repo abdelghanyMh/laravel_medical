@@ -176,9 +176,7 @@
                         </div>
                         <div class="col-sm-9">
                             <div class="form-field__control">
-                                <textarea name="antecedents" id="antecedents" cols="30" rows="5" class=" form-field__input ">
-                               {{ old('antecedents', $patient->antecedents) }}
-                            </textarea>
+                                <textarea name="antecedents" id="antecedents" cols="30" rows="5" class=" form-field__input ">{{ old('antecedents', $patient->antecedents) }}</textarea>
 
                             </div>
                         </div>
@@ -190,9 +188,7 @@
                         </div>
                         <div class="col-sm-9">
                             <div class="form-field__control">
-                                <textarea name="comments" id="comments" cols="30" rows="5" class=" form-field__input ">
-                               {{ old('comments', $patient->comments) }}
-                            </textarea>
+                                <textarea name="comments" id="comments" cols="30" rows="5" class=" form-field__input ">{{ old('comments', $patient->comments) }}</textarea>
 
                             </div>
                         </div>
