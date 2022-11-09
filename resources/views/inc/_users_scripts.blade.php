@@ -22,31 +22,40 @@
 <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>\
 <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
-<script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
-<script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
+<!-- SweetAlert2 -->
+<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 <script>
     $("#users_table").ready(function() {
-        $("#users_table").DataTable({responsive: true})
+        $("#users_table").DataTable({
+            responsive: true
+        })
     });
     $("#patients_table").ready(function() {
-        $("#patients_table").DataTable({responsive: true})
+        $("#patients_table").DataTable({
+            responsive: true
+        })
     });
     $("#orientationLtrs_table").ready(function() {
-        $("#orientationLtrs_table").DataTable({responsive: true})
+        $("#orientationLtrs_table").DataTable({
+            responsive: true
+        })
     });
     $("#scans_info").ready(function() {
-        $("#scans_info").DataTable({responsive: true})
+        $("#scans_info").DataTable({
+            responsive: true
+        })
     });
     $("#prescriptions_table").ready(function() {
-        $("#prescriptions_table").DataTable({responsive: true})
+        $("#prescriptions_table").DataTable({
+            responsive: true
+        })
     });
     $("#appointment_table").ready(function() {
-        $("#appointment_table").DataTable({responsive: true})
+        $("#appointment_table").DataTable({
+            responsive: true
+        })
     });
 
     //Date time picker
@@ -128,15 +137,6 @@
     });
 </script>
 <script>
-    // FIXME check whether these imports are required
-
-    $(function() {
-        $("input[data-bootstrap-switch]").each(function() {
-            $(this).bootstrapSwitch('state', $(this).prop('checked'));
-        })
-    })
-</script>
-<script>
     (function() {
         'use strict';
         window.addEventListener('load', function() {
@@ -156,3 +156,10 @@
         }, false);
     })();
 </script>
+
+<!-- only include _errors subview if there is errors-->
+@includeWhen($errors->any(), 'inc._errors')
+
+{{-- sucess msg --}}
+<!--TODO: check if I m working (sucess msg is displayed after successful add of a user)-->
+@includeWhen(session('success'), 'inc._success')

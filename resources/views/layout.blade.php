@@ -27,9 +27,12 @@
     <!-- Custom style -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    
+
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-    
+
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
 </head>
@@ -40,12 +43,6 @@
         <!-- Navbar & Sidebar -->
         @include('inc._nav_sidebar')
 
-        <!-- only include _errors subview if there is errors-->
-        @includeWhen($errors->any(), 'inc._errors')
-
-        {{-- sucess msg --}}
-        <!--TODO: check if I m working (sucess msg is displayed after successful add of a user)-->
-        @includeWhen(session('success'), 'inc._success')
 
 
         <!-- Content Wrapper. Contains page content -->
