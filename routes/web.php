@@ -20,47 +20,76 @@ use Illuminate\Support\Facades\Route;
  |
  */
 
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware('guest');
+Route::get(
+    '/', function () {
+        return view('auth.login');
+    }
+)->middleware(
+        'guest'
+    );
 
-Route::middleware(['auth', 'user-role:ADMIN'])->group(function () {
-    Route::resource('users', UsersController::class);
-});
+Route::middleware(['auth', 'user-role:ADMIN'])->group(
+    function () {
+        Route::resource('users', UsersController::class);
+    }
+);
 
-Route::middleware(['auth', 'user-role:DOCTOR|ADMIN'])->group(function () {
+Route::middleware(['auth', 'user-role:DOCTOR|ADMIN'])->group(
+    function () {
+        Route::resource('patients', PatientsController::class);
 
-    Route::get('/scans/{id}/download', [ScansController::class, 'download'])
-        ->name('scans.download');
+        Route::get('/scans/{id}/download', [ScansController::class, 'download'])
+            ->name(
+                'scans.download'
+            );
 
-    Route::resource('scans', ScansController::class);
+        Route::resource('scans', ScansController::class);
 
-    Route::resource('orientationLtr', OrientationLtrController::class);
+        Route::resource('orientationLtr', OrientationLtrController::class);
 
-    Route::get('/prescriptions/{id}/print', [PrescriptionsController::class, 'print'])
-        ->name('prescriptions.print');
-    Route::resource('prescriptions', PrescriptionsController::class);
-});
+        Route::get('/prescriptions/{id}/print', [PrescriptionsController::class, 'print'])
+            ->name(
+                'prescriptions.print'
+            );
+        Route::resource('prescriptions', PrescriptionsController::class);
 
-Route::middleware(['auth', 'user-role:DOCTOR|SECRETARY|ADMIN'])->group(function () {
-    Route::post('/patients/find', [PatientsController::class, 'findByQuery'])
-        ->name('patients.findByQuery');
-    Route::resource('patients', PatientsController::class);
+    }
+);
 
-    Route::resource('appointment', AppointmentController::class);
-});
+Route::middleware(['auth', 'user-role:DOCTOR|SECRETARY|ADMIN'])->group(
+    function () {
+        Route::resource('appointment', AppointmentController::class);
+        Route::post('/patients/find', [PatientsController::class, 'findByQuery'])
+            ->name(
+                'patients.findByQuery'
+            );
+
+    }
+);
 
 Route::match (['get', 'post'], '/login', [AuthController::class, 'login'])
-    ->name('login')
-    ->middleware('guest');
+    ->name(
+        'login'
+    )
+    ->middleware(
+        'guest'
+    );
 
 Route::get('/logout', [AuthController::class, 'logout'])
-    ->name('logout')
-    ->middleware('auth');
+    ->name(
+        'logout'
+    )
+    ->middleware(
+        'auth'
+    );
 
-Route::middleware(['auth', 'user-role:SECRETARY|ADMIN'])->group(function () {
-    // TODO is this danger
-    // the fact that secretary can access userController?_?
-    Route::post('/users/find', [UsersController::class, 'findByQuery'])
-        ->name('users.findByQuery');
-});
+Route::middleware(['auth', 'user-role:SECRETARY|ADMIN'])->group(
+    function () {
+        // TODO is this danger
+        // the fact that secretary can access userController?_?
+        Route::post('/users/find', [UsersController::class, 'findByQuery'])
+            ->name(
+                'users.findByQuery'
+            );
+    }
+);

@@ -160,7 +160,7 @@
             <!-- /. Appointment  box -->
 
             <!-- Lettres d'Orientation Médicale  box -->
-            <div class="card card-info">
+            <div class="card card-secondary">
                 <div class="card-header">
                     <h3 class="card-title">Orientation Letters</h3>
 
@@ -300,7 +300,7 @@
             <!-- /. info  medical -->
 
             <!-- Prescription Médicale  box -->
-            <div class="card card-info">
+            <div class="card card-secondary">
                 <div class="card-header">
                     <h3 class="card-title">Medication prescriptions</h3>
 
