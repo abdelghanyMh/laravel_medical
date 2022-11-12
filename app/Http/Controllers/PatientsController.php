@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Helpers\ModelHelpers;
 use App\Http\Requests\PatientFormRequest;
 use App\Models\Patient;
-use Barryvdh\Debugbar\Facades\Debugbar;
-use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;

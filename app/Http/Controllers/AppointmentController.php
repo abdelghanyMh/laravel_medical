@@ -7,7 +7,6 @@ use App\Http\Requests\AppointmentFormRequest;
 use App\Models\Patient;
 use App\Models\User;
 use App\Models\Appointment;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use ModelHelpers;

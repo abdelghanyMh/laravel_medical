@@ -6,8 +6,6 @@ use App\Http\Requests\UserFormRequest;
 use App\Http\Requests\UserUpdateFormRequest;
 use App\Models\User;
 use App\Enums\UserRoles;
-use Barryvdh\Debugbar\Facades\Debugbar;
-use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrientationFormRequest;
 use App\Models\OrientationLetter;
 use App\Models\Patient;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Support\Facades\Auth;
@@ -68,7 +67,6 @@ class OrientationLtrController extends Controller
     {
         $ltr = OrientationLetter::find($id);
         $patient = $ltr->patient;
-        Debugbar::info($patient);
         return view('orientataions.print', ['orientataionsltr' => $ltr, 'patient' => $patient]);
     }
 

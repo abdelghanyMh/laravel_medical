@@ -86,7 +86,7 @@
     $(document).ready(function() {
 
         const token = "{{ csrf_token() }}"
-        // Populate Select2 with AJAX data 
+        // Populate Select2 with AJAX data
 
         // 1. get the patients whose name and last names match the query provided
         $('.select2-patient-ajax').select2({
@@ -111,7 +111,7 @@
             }
         });
 
-        // 2. get the doctors whose name and last names match the query provided 
+        // 2. get the doctors whose name and last names match the query provided
         $('.select2-doctor-ajax').select2({
 
             ajax: {
