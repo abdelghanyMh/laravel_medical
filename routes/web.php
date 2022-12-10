@@ -85,7 +85,7 @@ Route::get('/logout', [AuthController::class, 'logout'])
 
 Route::middleware(['auth', 'user-role:SECRETARY|ADMIN'])->group(
     function () {
-        // TODO is this danger
+        //  is this danger
         // the fact that secretary can access userController?_?
         Route::post('/users/find', [UsersController::class, 'findByQuery'])
             ->name(

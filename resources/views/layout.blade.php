@@ -41,9 +41,7 @@
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar & Sidebar -->
-        @include('inc._nav_sidebar')
-
-
+        @includeWhen($includeNavbar ?? true, 'inc._nav_sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="min-height: 1098px;">
