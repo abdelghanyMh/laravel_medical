@@ -18,4 +18,8 @@ public static  function isSecretary( UserRoles $useRole)
     return $useRole->value == UserRoles::SECRETARY->value;
 }
 
+public static  function isAdmin( UserRoles $useRole)
+{
+    return $useRole->value == UserRoles::ADMIN->value;
+}
 }
