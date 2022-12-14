@@ -68,8 +68,9 @@ class ScansController extends Controller
      */
     public function show($id)
     {
-        $pathToFile = public_path('images/1666352035.png');
-        return response()->download($pathToFile);
+        $scan = Scan::find($id);
+        $filePath =$scan->scan_path;
+        return response()->download($filePath);
     }
 
     /**
@@ -109,10 +110,7 @@ class ScansController extends Controller
     public function download($id)
     {
         $scan = Scan::find($id);
-        $arr = explode('\\', $scan->scan_path);
-        $name = end($arr);
-
-        $filePath = public_path() . '\images\\' . $name;
+        $filePath =$scan->scan_path;
         return response()->download($filePath);
     }
     private function storeScan($request)

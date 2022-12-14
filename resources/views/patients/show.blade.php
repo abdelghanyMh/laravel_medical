@@ -411,10 +411,20 @@
                                                 <td>{{ $scan['type'] }}</td>
                                                 <td
                                                     style="padding-right: -3.25rem;border-right-width: 0px;height: 37px;width: 95.833px;">
-                                                    <a href="{{ route('scans.show', [$scan->id]) }}"
+
+                                                    @php
+                                                        $arr = explode('/', $scan->scan_path);
+                                                        $name = end($arr);
+                                                        $path = '/images/' . $name;
+                                                    @endphp
+                                                    <a href={{ $path }}
+                                                        onclick="window.open(this.href, '_blank', 'left=50%,top=50%,width=500,height=500,toolbar=1,resizable=1'); return false;"
                                                         class="btn btn-profile btn-del"
                                                         style="height: 41px;min-width: 46px;margin: 0px;padding: 0px;"
-                                                        title="preview"><i class="fas fa-external-link-alt"></i></a>
+                                                        title="preview"><i class="fas fa-external-link-alt"></i>
+                                                        {{-- <img src="{{ url($path) }}" alt="Image" /> --}}
+                                                    </a>
+
 
                                                     <a href="{{ route('scans.download', $scan->id) }}"
                                                         class="btn btn-app btn-modify"
